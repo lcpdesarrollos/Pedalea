@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Pedalea.DomainEntities\Pedalea.DomainEntities.csproj" />
+    <ProjectReference Include="..\Pedalea.Persistence\Pedalea.Persistence.csproj" />
+  </ItemGroup>
+
 </Project>

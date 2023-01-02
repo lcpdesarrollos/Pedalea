@@ -1,0 +1,18 @@
+﻿@layout ConfigurationLayout
+@page "/configuration"
+
+
+<PageTitle>Configuración</PageTitle>
+
+<h1>Configuración</h1>
+<h5>@Date</h5>
+
+@code {
+
+    private string Date { get; set; } = DateTime.Now.ToString();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Date = DateTime.Now.Date.ToShortDateString();
+    }
+}

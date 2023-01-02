@@ -1,0 +1,42 @@
+﻿@layout ConfigurationLayout
+@page "/Products"
+
+<PageTitle>Productos</PageTitle>
+
+<h1>Products</h1>
+
+<button class="btn btn-primary" style="@DisplayBtnAdd" @onclick="DisplayFormAdd">Agregar</button>
+<button class="btn btn-danger" style="@DisplayBtnCancel" @onclick="HideFormAdd">Cancelar</button>
+
+<div class="card-body" style="@DisplayDivAdd">
+    <div class="card form">
+        <div class="card-body">
+            <input class="form-control" placeholder="Nombre del producto"/>
+        </div>
+    </div>
+</div>
+@code {
+    private int currentCount = 0;
+    private string DisplayDivAdd { get; set; }
+    private string DisplayBtnAdd { get; set; }
+    private string DisplayBtnCancel { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        HideFormAdd();
+    }
+
+    private void HideFormAdd()
+    {
+        DisplayBtnAdd = "display: block";
+        DisplayDivAdd = "display: none";
+        DisplayBtnCancel = "display: none";
+    }
+
+    private void DisplayFormAdd()
+    {
+        DisplayBtnAdd = "display: none";
+        DisplayDivAdd = "display: block";
+        DisplayBtnCancel = "display: block";
+    }
+}
