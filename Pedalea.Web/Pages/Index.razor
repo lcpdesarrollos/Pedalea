@@ -1,9 +1,73 @@
 ﻿@page "/"
+@using Pedalea.DomainEntities.Entities;
+@using Pedalea.Web.Services.Product;
+@inject IProductService productService
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="ProductsSelected">
+    <h1>Total: @Total</h1>
+    @foreach (var item in productsSelected)
+    {
+        <div class="item">
+            <h3>@item.ProductName</h3>
+            <h4>@item.Price</h4>
+            <button class="btn btn-danger" @onclick="() => RemoveItem(item.Id)">Quitar</button>
+        </div>
+    }
+    
+    <br /><br /><br /><br /><br /><br />
+</div>
 
-Welcome to your new app.
+<div class="card-body">
+    <div class="row items">
+        @foreach (var product in products)
+        {
+            <div class="item">
+                <h1>@product.ProductName</h1>
+                <h5>@product.Description</h5>
+                <h3>@product.Price</h3>
+                <br>
+                <br>
+                <button class="btn btn-primary" @onclick="() => AddProduct(product.Id)">Agregar</button>
+            </div>
+        }
+    </div>
+</div>
+
+@code
+{
+    private List<ProductEntity> products { get; set; } = new List<ProductEntity>();
+    private List<ProductEntity> productsSelected { get; set; } = new List<ProductEntity>();
+    private decimal Total { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadProducts();
+    }
+
+    private async Task LoadProducts()
+    {
+        products = await productService.GetAllProducts();
+    }
+
+    private async Task AddProduct(int Id)
+    {
+        productsSelected.Add(products.Where(x => x.Id == Id).FirstOrDefault());
+        TotalPrices();
+    }
+
+    private async Task RemoveItem(int Id)
+    {
+        productsSelected.RemoveAll(x => x.Id == Id);
+        TotalPrices();
+    }
+
+    private void TotalPrices()
+    {
+        Total = productsSelected.Sum(x => x.Price);
+    }
+
+}
 
 

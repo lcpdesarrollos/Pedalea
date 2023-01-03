@@ -1,18 +1,16 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Pedalea.Persistence.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Pedalea.Persistence.IRepository;
+using Pedalea.Persistence.Repository;
 
 namespace Pedalea.Persistence
 {
-    public static class ServiceRegistrationDependencyInjection
+    public static class ServiceRegistrationPersistence
     {
         public static void DependencyInjectionPedaleaPersistence(this IServiceCollection services)
         {
             services.AddSingleton<ConnectionStrings>();
+            services.AddTransient<IProductRepository, ProductRepository>();
         }
     }
 }

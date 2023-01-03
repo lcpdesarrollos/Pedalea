@@ -3,3 +3,13 @@
 {
     width: 50%;
 }
+
+label
+{
+    font-weight: bold;
+}
+
+table button 
+{
+    color: black;
+}

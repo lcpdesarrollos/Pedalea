@@ -5,19 +5,19 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Presentation", "1. Presentation", "{DA2FEC5F-A135-4BAC-9EEE-763F27A5EEA3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Application", "2. Application", "{544C70D0-687D-452E-93C1-01246A93A4D1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Core", "2. Core", "{544C70D0-687D-452E-93C1-01246A93A4D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Infrastructure", "3. Infrastructure", "{63384C19-2497-4D27-B36D-23B3EE80FA77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pedalea.Persistence", "Pedalea.Persistence\Pedalea.Persistence.csproj", "{30105209-8D28-4291-9FE9-68A479697A00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pedalea.Persistence", "Pedalea.Persistence\Pedalea.Persistence.csproj", "{30105209-8D28-4291-9FE9-68A479697A00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pedalea.DomainEntities", "Pedalea.DomainEntities\Pedalea.DomainEntities.csproj", "{71F993F3-5CB1-4C69-A858-E31CF018698D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pedalea.DomainEntities", "Pedalea.DomainEntities\Pedalea.DomainEntities.csproj", "{71F993F3-5CB1-4C69-A858-E31CF018698D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pedalea.BusinessCore", "Pedalea.BusinessCore\Pedalea.BusinessCore.csproj", "{F7784DE0-8277-46CF-8BC2-98F202A6143A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pedalea.BusinessCore", "Pedalea.BusinessCore\Pedalea.BusinessCore.csproj", "{F7784DE0-8277-46CF-8BC2-98F202A6143A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pedalea.API", "Pedalea.API\Pedalea.API.csproj", "{B1FF28DB-605F-45FA-B71F-9CC668BCAD9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pedalea.API", "Pedalea.API\Pedalea.API.csproj", "{B1FF28DB-605F-45FA-B71F-9CC668BCAD9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pedalea.Web", "Pedalea.Web\Pedalea.Web.csproj", "{726AF80B-061C-4E62-8935-AD47AA29547E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pedalea.Web", "Pedalea.Web\Pedalea.Web.csproj", "{726AF80B-061C-4E62-8935-AD47AA29547E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

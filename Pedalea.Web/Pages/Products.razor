@@ -1,5 +1,8 @@
 ﻿@layout ConfigurationLayout
 @page "/Products"
+@using Pedalea.DomainEntities.Entities;
+@using Pedalea.Web.Services.Product;
+@inject IProductService productService
 
 <PageTitle>Productos</PageTitle>
 
@@ -11,19 +14,54 @@
 <div class="card-body" style="@DisplayDivAdd">
     <div class="card form">
         <div class="card-body">
-            <input class="form-control" placeholder="Nombre del producto"/>
+            <label class="form-label">Nombre</label>
+            <input class="form-control" placeholder="Nombre del producto" @bind="@ProductName" />
+            <br />
+            <label class="form-label">Descripción</label>
+            <input class="form-control" placeholder="Descripción del producto" @bind="@Description" />
+            <br />
+            <label class="form-label">Precio</label>
+            <input class="form-control" placeholder="Precio del producto" @bind="@Price" />
+            <br />
+            <input type="submit" class="btn btn-secondary" onclick="@SaveProduct" />
         </div>
     </div>
 </div>
+
+<div class="card-body">
+    <table class="table table-hover">
+        <tr>
+            <th>Nombre del producto</th>
+            <th>Descripción del producto</th>
+            <th>Precio del producto</th>
+            <th>Eliminar</th>
+        </tr>
+        @foreach (var item in products)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.Description</td>
+                <td>@item.Price</td>
+                <td><button class="btn btn-danger" @onclick="() => DeleteProduct(item.Id)">Eliminar</button></td>
+            </tr>
+        }
+    </table>
+</div>
+
 @code {
     private int currentCount = 0;
     private string DisplayDivAdd { get; set; }
     private string DisplayBtnAdd { get; set; }
     private string DisplayBtnCancel { get; set; }
+    private string ProductName { get; set; }
+    private string Description { get; set; }
+    private decimal Price { get; set; }
+    private List<ProductEntity> products { get; set; } = new List<ProductEntity>();
 
     protected override async Task OnInitializedAsync()
     {
         HideFormAdd();
+        await LoadProducts();
     }
 
     private void HideFormAdd()
@@ -38,5 +76,39 @@
         DisplayBtnAdd = "display: none";
         DisplayDivAdd = "display: block";
         DisplayBtnCancel = "display: block";
+    }
+
+    private async Task SaveProduct()
+    {
+        ProductEntity productEntity = new ProductEntity();
+        productEntity.ProductName = ProductName;
+        productEntity.Description = Description;
+        productEntity.Price = Price;
+
+        var result = await productService.InsertProduct(productEntity);
+
+        if (result)
+        {
+            ProductName = string.Empty;
+            Description = string.Empty;
+            Price = 0;
+            HideFormAdd();
+            await LoadProducts();
+        }
+    }
+
+    private async Task LoadProducts()
+    {
+        products = await productService.GetAllProducts();
+    }
+
+    private async Task DeleteProduct(int Id)
+    {
+        var result = await productService.DeleteProduct(Id);
+
+        if (result)
+        {
+            await LoadProducts();
+        }
     }
 }
